@@ -155,15 +155,9 @@ cidr_whitelist:
 odoo_version:
   help: On which odoo version is it based?
   type: float
-  default: 13.0
+  default: 8.0
   choices:
-    - 7.0
     - 8.0
-    - 9.0
-    - 10.0
-    - 11.0
-    - 12.0
-    - 13.0
 
 odoo_initial_lang:
   default: en_US

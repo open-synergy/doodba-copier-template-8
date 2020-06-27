@@ -14,3 +14,143 @@
     - ocb $ODOO_VERSION
     # Example of a merge of the PR with the number <PR>
     # - oca refs/pull/<PR>/head
+
+aeroo:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/aeroo/aeroo_reports.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-server-tools:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/server-tools.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-web:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/web.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-partner-contact:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/partner-contact.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-product-attribute:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/product-attribute.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-social:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/social.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-knowledge:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/knowledge.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-reporting-engine:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/reporting-engine.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+opnsynid-server-tools:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-server-tools.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-web:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-web.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-partner-contact:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-partner-contact.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-product-attribute:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-product-attribute.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-curated:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-odoo-curated.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+itpp-mail:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/itpp-labs/mail-addons.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION

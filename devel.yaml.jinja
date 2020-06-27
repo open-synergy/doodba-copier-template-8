@@ -55,15 +55,7 @@ services:
       - wdb
     command:
       - odoo
-      - --limit-memory-soft=0
-      - --limit-time-real-cron=9999999
-      - --limit-time-real=9999999
       - --workers=0
-      {%- if odoo_version == 9 %}
-      - --dev
-      {%- elif odoo_version >= 10 %}
-      - --dev=reload,qweb,werkzeug,xml
-      {%- endif %}
 
   db:
     extends:

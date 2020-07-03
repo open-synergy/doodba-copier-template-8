@@ -159,6 +159,13 @@ odoo_version:
   choices:
     - 8.0
 
+fa_set_module:
+  default: false
+  type: bool
+  help: >-
+    Do you want to add finance and accounting module set?
+
+
 odoo_initial_lang:
   default: en_US
   type: str

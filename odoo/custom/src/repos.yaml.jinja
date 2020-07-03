@@ -154,3 +154,125 @@ itpp-mail:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+
+{% if fa_set_module %}
+oca-account-financial-tools:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-financial-tools.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-account-invoicing:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-invoicing.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-account-payment:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-payment.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-mis-builder:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/mis-builder.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-account-closing:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-closing.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+opnsynid-account-voucher:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-voucher.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-closing:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-closing.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-financial-tools:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-financial-tools.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-invoicing:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-invoicing.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-invoice-reporting:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-invoice-reporting.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-accounting-report:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-accounting-report.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-payment:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-payment.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+{% endif %}

@@ -207,8 +207,16 @@ opnsynid-curated:
 
 itpp-mail:
   - mail_private
+{% if commercial_set_module %}
 
+opnsynid-app-store:
+  - material_backend_theme
+  - sync_chat_notification
+  - sync_group_chat
+  - sync_mail_notification
+{% endif %}
 {% if fa_set_module %}
+
 oca-account-financial-tools:
   - account_journal_period_close
   - account_reconcile_trace

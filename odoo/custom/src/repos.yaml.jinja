@@ -155,6 +155,18 @@ itpp-mail:
   merges:
     - origin $ODOO_VERSION
 
+{% if commercial_set_module %}
+opnsynid-app-store:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: git@github.com:open-synergy/opnsynid-app-store.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+{% endif %}
+
 {% if fa_set_module %}
 oca-account-financial-tools:
   defaults:

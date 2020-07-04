@@ -155,19 +155,17 @@ odoo_version:
   choices:
     - 8.0
 
-id_rsa:
-  type: str
-  secret: true
-
-id_rsa_pub:
-  type: str
-  secret: true
+commercial_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul dengan lisensi OPL?
 
 fa_set_module:
   default: false
   type: bool
   help: >-
-    Do you want to add finance and accounting module set?
+    Clone modul-modul untuk Financial & Accounting?
 
 
 odoo_initial_lang:

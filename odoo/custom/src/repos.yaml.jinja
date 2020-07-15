@@ -167,22 +167,24 @@ opnsynid-app-store:
     - origin $ODOO_VERSION
 {% endif %}
 
+{% if fa_set_module or spw_set_module%}
+oca-account-invoicing:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-invoicing.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+{% endif %}
+
 {% if fa_set_module %}
 oca-account-financial-tools:
   defaults:
     depth: $DEPTH_DEFAULT
   remotes:
     upstream: https://github.com/OCA/account-financial-tools.git
-  target:
-    upstream $ODOO_VERSION
-  merges:
-    - upstream $ODOO_VERSION
-
-oca-account-invoicing:
-  defaults:
-    depth: $DEPTH_DEFAULT
-  remotes:
-    upstream: https://github.com/OCA/account-invoicing.git
   target:
     upstream $ODOO_VERSION
   merges:
@@ -287,4 +289,166 @@ opnsynid-account-payment:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+{% endif %}
+
+{% if spw_set_module %}
+odoomrp-wip:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/odoomrp/odoomrp-wip
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+oca-crm:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/crm.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+oca-sale-workflow:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/sale-workflow.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+oca-purchase:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/purchase-workflow.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+opnsynid-sale-workflow:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-sale-workflow.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-purchase-workflow:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-purchase-workflow.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-sale-reporting:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-sale-reporting.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+oca-stock-logistics-warehouse:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/stock-logistics-warehouse.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+oca-stock-logistics-workflow:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/stock-logistics-workflow.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+oca-stock-logistics-transport:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        upstream: https://github.com/OCA/stock-logistics-transport.git
+    target:
+        upstream $ODOO_VERSION
+    merges:
+        - upstream $ODOO_VERSION
+
+opnsynid-stock-logistics-workflow:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-stock-logistics-workflow.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-stock-logistics-warehouse:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-stock-logistics-warehouse.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-stock-logistics-transport:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-stock-logistics-transport.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-stock-rma:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/stock-rma.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-crm:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-crm.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
+
+opnsynid-stock-reporting:
+    defaults:
+        depth: $DEPTH_DEFAULT
+    remotes:
+        origin: https://github.com/open-synergy/opnsynid-stock-reporting.git
+    target:
+        origin $ODOO_VERSION
+    merges:
+        - origin $ODOO_VERSION
 {% endif %}

@@ -167,6 +167,11 @@ fa_set_module:
   help: >-
     Clone modul-modul untuk Financial & Accounting?
 
+spw_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk Sale, Purchase, dan Warehouse?
 
 odoo_initial_lang:
   default: en_US

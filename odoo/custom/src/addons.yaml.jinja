@@ -30,9 +30,7 @@ oca-server-tools:
   - sql_export
   - sql_request_abstract
   - super_calendar
-  {% if spw_set_module%}
   - web_context_tunnel
-  {% endif %}
 
 oca-web:
   - support_branding
@@ -105,10 +103,6 @@ oca-partner-contact:
   - res_partner_affiliate
   - base_location
   - base_location_lau
-  {% if spw_set_module%}
-  - partner_financial_risk
-  - partner_sale_risk
-  {% endif %}
 
 oca-product-attribute:
   - product_brand
@@ -154,7 +148,6 @@ opnsynid-server-tools:
   - base_application_menu
   - base_cancel_reason
   - base_copy_user_access
-  - base_document_version
   - base_multiple_approval
   - base_print_policy
   - base_qr_code
@@ -200,8 +193,6 @@ opnsynid-partner-contact:
   - base_location_lau_partner_view
   {% if spw_set_module%}
   - partner_app_sale
-  - partner_financial_risk_policy
-  - partner_sale_risk_policy
   {% endif %}
 
 opnsynid-product-attribute:
@@ -215,13 +206,6 @@ opnsynid-product-attribute:
   {% if spw_set_module%}
   - product_app_sale
   - product_app_sale_packaging_price
-  - product_app_website_sale
-  - product_cas_information
-  - product_app_cas_information
-  - product_ec_information
-  - product_app_ec_information
-  - product_hazard_information
-  - product_app_hazard_information
   - product_app_purchase
   - product_app_stock
   {% endif %}
@@ -441,7 +425,6 @@ opnsynid-sale-reporting:
   - sale_analysis_uom
 
 oca-stock-logistics-workflow:
-  - mrp_lock_lot
   - picking_dispatch
   - procurement_jit_assign_move
   - product_serial

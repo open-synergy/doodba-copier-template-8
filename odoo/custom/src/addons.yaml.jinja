@@ -229,18 +229,20 @@ opnsynid-app-store:
   {% endif %}
 
 
+{% if fa_set_module or spw_set_module%}
 oca-account-invoicing:
-  {% if fa_set_module%}
+{% endif %}
+{% if fa_set_module%}
   - account_invoice_force_number
   - account_invoice_line_description
   - account_invoice_line_price_subtotal_gross
   - account_invoice_line_sort
   - account_invoice_rounding
   - account_invoice_rounding_by_currency
-  {% endif %}
-  {% if spw_set_module%}
+{% endif %}
+{% if spw_set_module%}
   - sale_order_line_price_subtotal_gross
-  {% endif %}
+{% endif %}
 
 {% if fa_set_module %}
 oca-account-financial-tools:

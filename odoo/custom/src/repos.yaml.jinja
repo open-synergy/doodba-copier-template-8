@@ -452,3 +452,26 @@ opnsynid-stock-reporting:
     merges:
         - origin $ODOO_VERSION
 {% endif %}
+{% if employee_dir_set_module %}
+
+oca-hr:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/hr.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+opnsynid-hr:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-hr.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+{% endif %}

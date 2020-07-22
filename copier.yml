@@ -173,6 +173,12 @@ spw_set_module:
   help: >-
     Clone modul-modul untuk Sale, Purchase, dan Warehouse?
 
+employee_dir_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk HR - Employee Directory?    
+
 odoo_initial_lang:
   default: en_US
   type: str

@@ -600,3 +600,23 @@ opnsynid-stock-reporting:
   - opnsynid_stock_inventory_blank_form_aeroo_report
   - opnsynid_stock_inventory_result_aeroo_report
 {% endif %}
+{% if employee_dir_set_module %}
+oca-hr:
+  - hr_employee_no_welcome
+
+opnsynid-hr:
+  - hr_department_notebook
+  - hr_department_type
+  - hr_employee_birthdate_from_home_address
+  - hr_employee_blood_type_from_home_address
+  - hr_employee_data_from_home_address
+  - hr_employee_employment_status
+  - hr_employee_ethnicity_from_home_address
+  - hr_employee_identification_from_home_address
+  - hr_employee_nationality_from_home_address
+  - hr_employee_organization_unit
+  - hr_employee_pob_from_home_address
+  - hr_employee_religion_from_home_address
+  - hr_job_family_modelling
+
+{% endif %}

@@ -65,6 +65,13 @@ services:
       POSTGRES_DB: *dbname
       POSTGRES_PASSWORD: odoopassword
 
+  aeroo-docs:
+    extends:
+      file: common.yaml
+      service: aeroo-docs
+    depends_on:
+      - odoo
+
   smtp:
     extends:
       file: common.yaml

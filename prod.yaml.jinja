@@ -123,6 +123,13 @@ services:
     env_file:
       - .docker/db-creation.env
     restart: unless-stopped
+
+  aeroo-docs:
+    extends:
+      file: common.yaml
+      service: aeroo-docs
+    depends_on:
+      - odoo    
   {%- if smtp_relay_host %}
 
   smtp:

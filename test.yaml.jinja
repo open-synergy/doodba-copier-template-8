@@ -76,6 +76,13 @@ services:
       - .docker/db-creation.env
     restart: unless-stopped
 
+  aeroo-docs:
+    extends:
+      file: common.yaml
+      service: aeroo-docs
+    depends_on:
+      - odoo
+
   smtp:
     extends:
       file: common.yaml

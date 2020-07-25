@@ -177,7 +177,13 @@ employee_dir_set_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk HR - Employee Directory?    
+    Clone modul-modul untuk HR - Employee Directory?
+
+expense_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk HR - Expense?     
 
 odoo_initial_lang:
   default: en_US

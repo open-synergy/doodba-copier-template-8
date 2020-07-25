@@ -167,7 +167,7 @@ opnsynid-app-store:
     - origin $ODOO_VERSION
 {% endif %}
 
-{% if fa_set_module or spw_set_module%}
+{% if fa_set_module or spw_set_module or expense_module %}
 oca-account-invoicing:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -177,9 +177,7 @@ oca-account-invoicing:
     upstream $ODOO_VERSION
   merges:
     - upstream $ODOO_VERSION
-{% endif %}
 
-{% if fa_set_module %}
 oca-account-financial-tools:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -452,7 +450,7 @@ opnsynid-stock-reporting:
     merges:
         - origin $ODOO_VERSION
 {% endif %}
-{% if employee_dir_set_module %}
+{% if employee_dir_set_module or expense_module %}
 
 oca-hr:
   defaults:
@@ -469,6 +467,18 @@ opnsynid-hr:
     depth: $DEPTH_DEFAULT
   remotes:
     origin: https://github.com/open-synergy/opnsynid-hr.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+{% endif %}
+{% if expense_module %}
+
+opnsynid-hr-expense:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-hr-expense.git
   target:
     origin $ODOO_VERSION
   merges:

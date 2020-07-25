@@ -231,7 +231,7 @@ opnsynid-app-store:
 {% if fa_set_module or spw_set_module or expense_module %}
 oca-account-invoicing:
 {% endif %}
-{% if fa_set_module%}
+{% if fa_set_module or expense_module %}
   - account_invoice_force_number
   - account_invoice_line_description
   - account_invoice_line_price_subtotal_gross

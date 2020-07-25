@@ -228,7 +228,7 @@ opnsynid-app-store:
   - sync_smiley_chat
 {% endif %}
 
-{% if fa_set_module or spw_set_module%}
+{% if fa_set_module or spw_set_module or expense_module %}
 oca-account-invoicing:
 {% endif %}
 {% if fa_set_module%}
@@ -243,7 +243,7 @@ oca-account-invoicing:
   - sale_order_line_price_subtotal_gross
 {% endif %}
 
-{% if fa_set_module %}
+{% if fa_set_module or expense_module %}
 oca-account-financial-tools:
   - account_journal_period_close
   - account_reconcile_trace

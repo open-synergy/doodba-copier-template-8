@@ -191,9 +191,9 @@ opnsynid-partner-contact:
   - partner_place_of_birth
   - base_location_lau_level3
   - base_location_lau_partner_view
-  {% if spw_set_module%}
+{% if spw_set_module%}
   - partner_app_sale
-  {% endif %}
+{% endif %}
 
 opnsynid-product-attribute:
   - product_multiple_uom_conversion
@@ -203,12 +203,12 @@ opnsynid-product-attribute:
   - product_pricelist_mass_action
   - product_pricelist_open_chatter
   - product_app_brand
-  {% if spw_set_module%}
+{% if spw_set_module%}
   - product_app_sale
   - product_app_sale_packaging_price
   - product_app_purchase
   - product_app_stock
-  {% endif %}
+{% endif %}
 
 opnsynid-curated:
   - base_other_report_engines
@@ -217,7 +217,7 @@ opnsynid-curated:
 
 itpp-mail:
   - mail_private
-  {% if commercial_set_module %}
+{% if commercial_set_module %}
 
 opnsynid-app-store:
   - material_backend_theme
@@ -226,8 +226,7 @@ opnsynid-app-store:
   - sync_mail_notification
   - rest_api_drc
   - sync_smiley_chat
-  {% endif %}
-
+{% endif %}
 
 {% if fa_set_module or spw_set_module%}
 oca-account-invoicing:
@@ -603,6 +602,7 @@ opnsynid-stock-reporting:
   - opnsynid_stock_inventory_result_aeroo_report
 {% endif %}
 {% if employee_dir_set_module %}
+
 oca-hr:
   - hr_employee_no_welcome
 

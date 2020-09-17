@@ -183,7 +183,7 @@ expense_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk HR - Expense?     
+    Clone modul-modul untuk HR - Expense?
 
 odoo_initial_lang:
   default: en_US

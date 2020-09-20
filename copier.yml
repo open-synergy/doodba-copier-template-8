@@ -179,6 +179,12 @@ employee_dir_set_module:
   help: >-
     Clone modul-modul untuk HR - Employee Directory?
 
+career_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk HR - Career Management?    
+
 expense_module:
   default: false
   type: bool

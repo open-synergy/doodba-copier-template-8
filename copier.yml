@@ -183,7 +183,13 @@ career_set_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk HR - Career Management?    
+    Clone modul-modul untuk HR - Career Management?
+
+attendance_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk HR - Attendance?       
 
 expense_module:
   default: false

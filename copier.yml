@@ -30,6 +30,8 @@ _exclude:
 
 _skip_if_exists:
   - odoo/custom/src/private/*/
+  - odoo/custom/ssh/id_rsa
+  - odoo/custom/ssh/id_rsa.pub
 
 _tasks:
   - invoke develop
@@ -189,7 +191,7 @@ attendance_set_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk HR - Attendance?       
+    Clone modul-modul untuk HR - Attendance?
 
 expense_module:
   default: false

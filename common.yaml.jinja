@@ -17,12 +17,24 @@ services:
       PGUSER: &dbuser "$DB_USER"
       DB_FILTER: "$DB_FILTER"
       PROXY_MODE: "$ODOO_PROXY_MODE"
-{%- if fa_set_module or spw_set_module or expense_module %}      MODULE_SET_FA: ok{%- endif %}
-{%- if spw_set_module %}      MODULE_SET_SPW: ok{%- endif %}
-{%- if employee_dir_set_module or career_set_module or attendance_set_module or expense_module %}      MODULE_SET_EMPLOYEE_DIR: ok{%- endif %}
-{%- if expense_module %}      MODULE_SET_EXPENSE: ok{%- endif %}
-{%- if career_set_module or attendance_set_module %}      MODULE_SET_CAREER: ok{%- endif %}
-{%- if attendance_set_module %}      MODULE_SET_ATTENDANCE: ok{%- endif %}
+{%- if fa_set_module or spw_set_module or expense_module %}
+      MODULE_SET_FA: ok
+{%- endif %}
+{%- if spw_set_module %}
+      MODULE_SET_SPW: ok
+{%- endif %}
+{%- if employee_dir_set_module or career_set_module or attendance_set_module or expense_module %}
+      MODULE_SET_EMPLOYEE_DIR: ok
+{%- endif %}
+{%- if expense_module %}
+      MODULE_SET_EXPENSE: ok
+{%- endif %}
+{%- if career_set_module or attendance_set_module %}
+      MODULE_SET_CAREER: ok
+{%- endif %}
+{%- if attendance_set_module %}
+      MODULE_SET_ATTENDANCE: ok
+{%- endif %}
     hostname: "$SMTP_REAL_NON_CANONICAL_DEFAULT"
     tty: true
     volumes:

@@ -494,6 +494,16 @@ opnsynid-hr:
 {% endif %}
 {% if attendance_set_module %}
 
+opnsynid-hr-attendance:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-hr-attendance.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
 itpp-labs-misc-addons:
   defaults:
     depth: $DEPTH_DEFAULT

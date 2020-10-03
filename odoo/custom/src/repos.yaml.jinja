@@ -470,7 +470,7 @@ opnsynid-stock-reporting:
     merges:
         - origin $ODOO_VERSION
 {% endif %}
-{% if employee_dir_set_module or expense_module or career_set_module%}
+{% if employee_dir_set_module or expense_module or career_set_module or attendance_set_module%}
 
 oca-hr:
   defaults:
@@ -491,6 +491,19 @@ opnsynid-hr:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
+{% endif %}
+{% if attendance_set_module %}
+
+itpp-labs-misc-addons:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/itpp-labs/misc-addons.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
 {% endif %}
 {% if expense_module %}
 

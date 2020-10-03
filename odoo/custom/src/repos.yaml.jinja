@@ -155,7 +155,6 @@ itpp-mail:
   merges:
     - origin $ODOO_VERSION
 
-{% if commercial_set_module %}
 opnsynid-app-store:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -165,9 +164,7 @@ opnsynid-app-store:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-{% endif %}
 
-{% if fa_set_module or spw_set_module or expense_module %}
 oca-account-invoicing:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -307,9 +304,7 @@ opnsynid-currency:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-{% endif %}
 
-{% if spw_set_module %}
 odoomrp-wip:
     defaults:
         depth: $DEPTH_DEFAULT
@@ -469,8 +464,6 @@ opnsynid-stock-reporting:
         origin $ODOO_VERSION
     merges:
         - origin $ODOO_VERSION
-{% endif %}
-{% if employee_dir_set_module or expense_module or career_set_module or attendance_set_module%}
 
 oca-hr:
   defaults:
@@ -491,8 +484,6 @@ opnsynid-hr:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-{% endif %}
-{% if attendance_set_module %}
 
 opnsynid-hr-attendance:
   defaults:
@@ -514,9 +505,6 @@ itpp-labs-misc-addons:
   merges:
     - origin $ODOO_VERSION
 
-{% endif %}
-{% if expense_module %}
-
 opnsynid-hr-expense:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -526,5 +514,3 @@ opnsynid-hr-expense:
     origin $ODOO_VERSION
   merges:
     - origin $ODOO_VERSION
-
-{% endif %}

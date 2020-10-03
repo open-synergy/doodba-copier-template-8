@@ -193,9 +193,6 @@ opnsynid-partner-contact:
   - partner_place_of_birth
   - base_location_lau_level3
   - base_location_lau_partner_view
-{% if spw_set_module%}
-  - partner_app_sale
-{% endif %}
 
 opnsynid-product-attribute:
   - product_multiple_uom_conversion
@@ -205,12 +202,6 @@ opnsynid-product-attribute:
   - product_pricelist_mass_action
   - product_pricelist_open_chatter
   - product_app_brand
-{% if spw_set_module%}
-  - product_app_sale
-  - product_app_sale_packaging_price
-  - product_app_purchase
-  - product_app_stock
-{% endif %}
 
 opnsynid-curated:
   - base_other_report_engines
@@ -219,7 +210,6 @@ opnsynid-curated:
 
 itpp-mail:
   - mail_private
-{% if commercial_set_module %}
 
 opnsynid-app-store:
   - material_backend_theme
@@ -228,24 +218,21 @@ opnsynid-app-store:
   - sync_mail_notification
   - rest_api_drc
   - sync_smiley_chat
-{% endif %}
 
-{% if fa_set_module or spw_set_module or expense_module %}
+---
+# Finance & Accounting Module Sets
+ONLY:
+  MODULE_SET_FA:
+    - 1
+
 oca-account-invoicing:
-{% endif %}
-{% if fa_set_module or expense_module %}
   - account_invoice_force_number
   - account_invoice_line_description
   - account_invoice_line_price_subtotal_gross
   - account_invoice_line_sort
   - account_invoice_rounding
   - account_invoice_rounding_by_currency
-{% endif %}
-{% if spw_set_module%}
-  - sale_order_line_price_subtotal_gross
-{% endif %}
 
-{% if fa_set_module or expense_module %}
 oca-account-financial-tools:
   - account_journal_period_close
   - account_reconcile_trace
@@ -336,9 +323,13 @@ opnsynid-currency:
 oca-mis-builder:
   - mis_builder
   - mis_builder_analytic_filter
-{% endif %}
 
-{% if spw_set_module %}
+---
+# Sales, Purchase, and Warehouse Module Sets
+ONLY:
+  MODULE_SET_SPW:
+    - 1
+
 odoomrp-wip:
   - stock_picking_wave_management
 
@@ -614,15 +605,27 @@ opnsynid-stock-reporting:
   - opnsynid_stock_card_aeroo_report
   - opnsynid_stock_inventory_blank_form_aeroo_report
   - opnsynid_stock_inventory_result_aeroo_report
-{% endif %}
-{% if employee_dir_set_module or expense_module %}
+
+opnsynid-partner-contact:
+  - partner_app_sale
+
+oca-account-invoicing:
+  - sale_order_line_price_subtotal_gross
+
+opnsynid-product-attribute:
+  - product_app_sale
+  - product_app_sale_packaging_price
+  - product_app_purchase
+  - product_app_stock
+
+---
+# HR Employee Directory Module Sets
+ONLY:
+  MODULE_SET_EMPLOYEE_DIR:
+    - 1
 
 oca-hr:
   - hr_employee_no_welcome
-{% if career_set_module %}
-  - hr_contract_reference
-{% endif %}
-{% if attendance_set_module %}  - hr_public_holidays{% endif %}
 
 opnsynid-hr:
   - hr_department_notebook
@@ -639,8 +642,27 @@ opnsynid-hr:
   - hr_employee_religion_from_home_address
   - hr_job_family_modelling
   - hr_employee_join_termination_date
-{% endif %}
-{% if career_set_module %}
+
+---
+# HR Expense
+ONLY:
+  MODULE_SET_EXPENSE:
+    - 1
+
+opnsynid-hr-expense:
+  - hr_cash_advance
+  - hr_reimbursement
+
+---
+# HR Career Management
+ONLY:
+  MODULE_SET_CAREER:
+    - 1
+
+oca-hr:
+  - hr_contract_reference
+
+opnsynid-hr:
   - hr_assignment_transition
   - hr_assignment_transition_job_family
   - hr_award
@@ -665,8 +687,18 @@ opnsynid-hr:
   - hr_promotion_transition_job_family
   - hr_termination_transition
   - hr_termination_transition_job_family
-{% endif %}
-{% if attendance_set_module %}  - hr_assignment_transition_timesheet_computation
+
+---
+# HR Attendance
+ONLY:
+  MODULE_SET_ATTENDANCE:
+    - 1
+
+oca-hr:
+  - hr_public_holidays
+
+opnsynid-hr:
+  - hr_assignment_transition_timesheet_computation
   - hr_attendance_computation
   - hr_attendance_configuration_page
   - hr_attendance_import_from_machine
@@ -689,15 +721,7 @@ opnsynid-hr:
   - hr_timesheet_computation_attendance_schedule
   - hr_timesheet_computation_holiday
   - hr_timesheet_computation_overtime
-  - hr_timesheet_contract{% endif %}
-
-{% if expense_module %}
-
-opnsynid-hr-expense:
-  - hr_cash_advance
-  - hr_reimbursement
-{% endif %}
-{% if attendance_set_module %}
+  - hr_timesheet_contract
 
 itpp-labs-misc-addons:
   - hr_public_holidays_ics_import
@@ -706,4 +730,3 @@ opnsynid-hr-attendance:
   - hr_contract_multiple_working_schedule
   - hr_timesheet_attendance_schedule_multiple_working_schedule
   - hr_contract_multiple_working_schedule_mass_generate
-{% endif %}

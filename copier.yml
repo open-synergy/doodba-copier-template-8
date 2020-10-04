@@ -199,6 +199,12 @@ expense_module:
   help: >-
     Clone modul-modul untuk HR - Expense?
 
+accountant_service_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk Accountant Service?    
+
 odoo_initial_lang:
   default: en_US
   type: str

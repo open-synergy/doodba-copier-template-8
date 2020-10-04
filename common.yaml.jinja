@@ -35,6 +35,9 @@ services:
 {%- if attendance_set_module %}
       MODULE_SET_ATTENDANCE: ok
 {%- endif %}
+{%- if accountant_service_module %}
+      MODULE_SET_ACCOUNTANT_SERVICE: ok
+{%- endif %}
     hostname: "$SMTP_REAL_NON_CANONICAL_DEFAULT"
     tty: true
     volumes:

@@ -169,6 +169,12 @@ fa_set_module:
   help: >-
     Clone modul-modul untuk Financial & Accounting?
 
+fixed_asset_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk fixed asset?    
+
 spw_set_module:
   default: false
   type: bool
@@ -203,7 +209,7 @@ accountant_service_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk Accountant Service?    
+    Clone modul-modul untuk Accountant Service?
 
 odoo_initial_lang:
   default: en_US

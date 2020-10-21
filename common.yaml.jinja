@@ -17,6 +17,9 @@ services:
       PGUSER: &dbuser "$DB_USER"
       DB_FILTER: "$DB_FILTER"
       PROXY_MODE: "$ODOO_PROXY_MODE"
+{%- if ou_set_module %}
+      MODULE_SET_OU: ok
+{%- endif %}
 {%- if fa_set_module or spw_set_module or expense_module or fixed_asset_set_module %}
       MODULE_SET_FA: ok
 {%- endif %}

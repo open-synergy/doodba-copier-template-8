@@ -163,6 +163,12 @@ commercial_set_module:
   help: >-
     Clone modul-modul dengan lisensi OPL?
 
+ou_set_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk operating unit?
+
 fa_set_module:
   default: false
   type: bool
@@ -173,7 +179,7 @@ fixed_asset_set_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk fixed asset?    
+    Clone modul-modul untuk fixed asset?
 
 spw_set_module:
   default: false

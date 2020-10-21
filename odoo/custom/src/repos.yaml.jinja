@@ -95,6 +95,16 @@ oca-reporting-engine:
   merges:
     - upstream $ODOO_VERSION
 
+oca-operating-unit:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/operating-unit.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
 opnsynid-server-tools:
   defaults:
     depth: $DEPTH_DEFAULT

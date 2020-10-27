@@ -796,7 +796,7 @@ opnsynid-fixed-asset:
   - fixed_asset_retirement_stolen
 
 ---
-# Fixed Asset Module Sets
+# Fixed Asset + SPW Module Sets
 ONLY:
   MODULE_SET_FIXED_ASSET:
     - ok
@@ -805,3 +805,14 @@ ONLY:
 
 opnsynid-fixed-asset:
   - fixed_asset_stock
+
+---
+# Fixed Asset + SPW Module Sets
+ONLY:
+  MODULE_SET_ACCOUNTANT_SERVICE:
+    - ok
+  MODULE_SET_OU:
+    - ok
+    
+opnsynid-vertical-accountant:
+  - accountant_report_operating_unit

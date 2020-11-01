@@ -99,11 +99,21 @@ oca-operating-unit:
   defaults:
     depth: $DEPTH_DEFAULT
   remotes:
-    upstream: https://github.com/OCA/operating-unit.git
+    upstream: https://github.com/open-synergy/operating-unit.git
   target:
-    upstream $ODOO_VERSION
+    upstream 8.0-dev
   merges:
-    - upstream $ODOO_VERSION
+    - upstream 8.0-dev
+
+opnsynid-operating-unit:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/open-synergy/opnsynid-operating-unit.git
+  target:
+    upstream 8.0
+  merges:
+    - upstream 8.0
 
 opnsynid-server-tools:
   defaults:

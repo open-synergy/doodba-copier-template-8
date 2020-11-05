@@ -826,3 +826,27 @@ ONLY:
 
 opnsynid-vertical-accountant:
   - accountant_report_operating_unit
+
+---
+# Service Module Sets
+ONLY:
+  MODULE_SET_SERVICE:
+    - ok
+
+opnsynid-service:
+  - service_contract
+  - service_contract_project
+
+---
+# Service Module Sets + OU
+ONLY:
+  MODULE_SET_SERVICE:
+    - ok
+  MODULE_SET_OU:
+    - ok
+
+opnsynid-service:
+  - service_contract_operating_unit
+
+oca-operating-unit:
+  - analytic_operating_unit

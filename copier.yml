@@ -217,6 +217,12 @@ accountant_service_module:
   help: >-
     Clone modul-modul untuk Accountant Service?
 
+service_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk Service?    
+
 odoo_initial_lang:
   default: en_US
   type: str

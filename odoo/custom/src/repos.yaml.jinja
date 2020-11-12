@@ -35,6 +35,26 @@ oca-server-tools:
   merges:
     - upstream $ODOO_VERSION
 
+oca-connector:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/connector.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
+oca-connector-interfaces:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/connector-interfaces.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
 oca-web:
   defaults:
     depth: $DEPTH_DEFAULT

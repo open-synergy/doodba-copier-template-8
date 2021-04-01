@@ -278,6 +278,12 @@ opnsynid-account-voucher:
   - account_voucher_refund_settlement
   - account_voucher_bank_cash_cash_flow
   - account_voucher_bank_cash_payment_order
+  - account_voucher_advance_settlement_dashoboard_tile
+  - account_voucher_bank_cash_dashboard_tile
+  - account_voucher_cheque_dashboard_tile
+  - account_voucher_giro_dashboard_tile
+  - account_voucher_invoice_settlement_dashboard_tile
+  - account_voucher_refund_settlement_dashoboard_tile
 
 opnsynid-bank-statement:
   - account_bank_statement_populate_from_existing
@@ -287,6 +293,8 @@ opnsynid-account-closing:
   - account_amortization_common
   - account_amortization_prepaid_expense
   - account_amortization_prepaid_income
+  - account_amortization_prepaid_expense_dashboard_tile
+  - account_amortization_prepaid_income_dashboard_tile
 
 opnsynid-account-financial-tools:
   - account_bank_statement_policy
@@ -297,6 +305,10 @@ opnsynid-account-financial-tools:
   - account_move_line_analysis
   - account_move_print_policy
   - account_type_sequence
+  - account_move_sequence_range
+
+opnsynid-currency:
+  - currency_exchange_method
 
 opnsynid-account-invoicing:
   - account_invoice_last_payment
@@ -307,6 +319,7 @@ opnsynid-account-invoicing:
   - account_invoice_workflow_policy_payment
   - account_invoice_multiple_approval
   - account_invoice_multiple_approval_workflow_policy
+  - account_invoice_dashboard_tile
 
 opnsynid-account-invoice-reporting:
   - account_invoice_analysis
@@ -335,9 +348,6 @@ opnsynid-account-payment:
   - account_payment_multiple_approval
   - account_payment_multiple_approval_workflow_policy
   - account_payment_workflow_policy
-
-opnsynid-currency:
-  - currency_exchange_method
 
 oca-mis-builder:
   - mis_builder
@@ -749,6 +759,7 @@ opnsynid-hr:
   - hr_timesheet_sheet_multiple_approval
   - hr_timesheet_workflow_policy
   - hr_timesheet_sheet_sequence_configurator
+  - hr_timesheet_monkeypatch
 
 itpp-labs-misc-addons:
   - hr_public_holidays_ics_import

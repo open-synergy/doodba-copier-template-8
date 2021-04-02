@@ -255,6 +255,16 @@ oca-account-closing:
   merges:
     - upstream $ODOO_VERSION
 
+oca-account-analytic:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/account-analytic.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
 opnsynid-account-voucher:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -340,6 +350,16 @@ opnsynid-account-payment:
     depth: $DEPTH_DEFAULT
   remotes:
     origin: https://github.com/open-synergy/opnsynid-account-payment.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-account-analytic:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-account-analytic.git
   target:
     origin $ODOO_VERSION
   merges:

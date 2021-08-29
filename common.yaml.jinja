@@ -41,6 +41,9 @@ services:
 {%- if attendance_set_module %}
       MODULE_SET_ATTENDANCE: ok
 {%- endif %}
+{%- if payroll_module %}
+      MODULE_SET_PAYROLL: ok
+{%- endif %}
 {%- if accountant_service_module %}
       MODULE_SET_ACCOUNTANT_SERVICE: ok
 {%- endif %}

@@ -211,6 +211,12 @@ expense_module:
   help: >-
     Clone modul-modul untuk HR - Expense?
 
+payroll_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk HR - Payroll?    
+
 accountant_service_module:
   default: false
   type: bool
@@ -221,7 +227,7 @@ service_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk Service?    
+    Clone modul-modul untuk Service?
 
 odoo_initial_lang:
   default: en_US

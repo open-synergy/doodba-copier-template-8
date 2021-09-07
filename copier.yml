@@ -229,6 +229,12 @@ project_module:
   help: >-
     Clone modul-modul untuk project management?
 
+timesheet_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk timesheet?
+
 service_module:
   default: false
   type: bool

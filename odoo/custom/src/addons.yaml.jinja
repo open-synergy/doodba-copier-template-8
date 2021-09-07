@@ -993,3 +993,43 @@ opnsynid-project:
   - project_task_workflow
   - project_timebox
   - project_workflow_policy
+
+---
+# Time Module Sets
+ONLY:
+  MODULE_SET_TIMESHEET:
+    - ok
+
+oca-timesheet:
+  - hr_timesheet_no_closed_project_task
+  - hr_timesheet_task
+  - timesheet_task
+
+opnsynid-hr:
+  - hr_contract_timesheet_pricelist
+  - hr_timesheet_accrue_expense
+  - hr_timesheet_accrue_income
+  - hr_timesheet_general_account_policy
+  - hr_timesheet_onchange
+  - hr_timesheet_pricelist
+  - hr_timesheet_product_policy
+  - hr_timesheet_sheet_accrue_expense
+  - hr_timesheet_sheet_accrue_income
+  - hr_timesheet_sheet_onchange
+  - hr_timesheet_sheet_pricelist
+  - hr_timesheet_sheet_product_policy
+  - hr_timesheet_task_accrue_expense
+  - hr_timesheet_task_accrue_income
+  - hr_timesheet_task_different_analytic
+  - hr_timesheet_task_onchange
+  - hr_timesheet_task_pricelist
+  - hr_timesheet_task_product_policy
+
+oca-project:
+  - project_timesheet_analytic_partner
+
+opnsynid-project:
+  - project_completion_revenue_recognition
+  - project_issue_analytic_partner
+  - project_task_accrue_income_expense
+  - project_task_template_general_account_policy

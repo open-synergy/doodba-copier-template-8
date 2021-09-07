@@ -47,6 +47,9 @@ services:
 {%- if project_module %}
       MODULE_SET_PROJECT: ok
 {%- endif %}
+{%- if timesheet_module %}
+      MODULE_SET_TIMESHEET: ok
+{%- endif %}
 {%- if accountant_service_module %}
       MODULE_SET_ACCOUNTANT_SERVICE: ok
 {%- endif %}

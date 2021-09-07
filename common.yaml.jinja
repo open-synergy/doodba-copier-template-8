@@ -44,6 +44,9 @@ services:
 {%- if payroll_module %}
       MODULE_SET_PAYROLL: ok
 {%- endif %}
+{%- if project_module %}
+      MODULE_SET_PROJECT: ok
+{%- endif %}
 {%- if accountant_service_module %}
       MODULE_SET_ACCOUNTANT_SERVICE: ok
 {%- endif %}

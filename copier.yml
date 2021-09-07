@@ -215,13 +215,19 @@ payroll_module:
   default: false
   type: bool
   help: >-
-    Clone modul-modul untuk HR - Payroll?    
+    Clone modul-modul untuk HR - Payroll?
 
 accountant_service_module:
   default: false
   type: bool
   help: >-
     Clone modul-modul untuk Accountant Service?
+
+project_module:
+  default: false
+  type: bool
+  help: >-
+    Clone modul-modul untuk project management?
 
 service_module:
   default: false

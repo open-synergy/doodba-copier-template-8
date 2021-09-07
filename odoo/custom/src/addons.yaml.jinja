@@ -294,7 +294,7 @@ opnsynid-account-voucher-aeroo-report:
   - account_voucher_cheque_aeroo_report
   - account_voucher_giro_aeroo_report
   - account_voucher_invoice_settlement_aeroo_report
-  - account_voucher_refund_settlement_aeroo_report  
+  - account_voucher_refund_settlement_aeroo_report
 
 opnsynid-bank-statement:
   - account_bank_statement_populate_from_existing
@@ -949,3 +949,47 @@ ONLY:
 opnsynid-service:
   - service_contract_operating_unit
   - service_contract_quotation_operating_unit
+
+---
+# Project Module Sets
+ONLY:
+  MODULE_SET_PROJECT:
+    - ok
+
+oca-project:
+  - project_closing
+  - project_description
+  - project_issue_code
+  - project_issue_reassign
+  - project_stage_state
+  - project_task_add_very_high
+  - project_task_code
+  - project_task_reassign
+  - project_task_category
+
+opnsynid-project:
+  - project_assignment_letter
+  - project_display_name
+  - project_issue_contact_commercial_partner
+  - project_issue_display_name
+  - project_issue_duplicate
+  - project_issue_multiple_task
+  - project_issue_multiple_task_timebox
+  - project_issue_print_policy
+  - project_onchange
+  - project_print_policy
+  - project_project_custom_information
+  - project_task_activity_dependency
+  - project_task_analytic_account
+  - project_task_category_instruction
+  - project_task_category_view
+  - project_task_code_by_project
+  - project_task_display_name
+  - project_task_reference_document
+  - project_task_template
+  - project_task_template_category
+  - project_task_template_dependency
+  - project_task_template_instruction
+  - project_task_workflow
+  - project_timebox
+  - project_workflow_policy

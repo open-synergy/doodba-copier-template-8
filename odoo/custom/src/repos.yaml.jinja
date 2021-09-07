@@ -265,6 +265,16 @@ oca-account-analytic:
   merges:
     - upstream $ODOO_VERSION
 
+oca-project:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    upstream: https://github.com/OCA/project.git
+  target:
+    upstream $ODOO_VERSION
+  merges:
+    - upstream $ODOO_VERSION
+
 opnsynid-account-voucher:
   defaults:
     depth: $DEPTH_DEFAULT
@@ -630,6 +640,16 @@ opnsynid-service:
     depth: $DEPTH_DEFAULT
   remotes:
     origin: https://github.com/open-synergy/opnsynid-service.git
+  target:
+    origin $ODOO_VERSION
+  merges:
+    - origin $ODOO_VERSION
+
+opnsynid-project:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  remotes:
+    origin: https://github.com/open-synergy/opnsynid-project.git
   target:
     origin $ODOO_VERSION
   merges:

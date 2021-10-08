@@ -1,11 +1,15 @@
 from glob import glob
 from pathlib import Path
+from typing import Optional
 
+import pytest
+import yaml
 from copier import copy
 from plumbum import local
 from plumbum.cmd import git, invoke
 
 LATEST_VERSION_WITHOUT_COPIER = "v0.0.0"
+MISSING = object()
 
 
 def test_transtion_to_copier(
@@ -30,7 +34,7 @@ def test_transtion_to_copier(
         )
         env_contents = env_contents.replace(
             "ODOO_IMAGE=docker.io/myuser/myproject-odoo",
-            f"ODOO_IMAGE=registry.example.com/custom-team/custom-project-odoo",
+            "ODOO_IMAGE=registry.example.com/custom-team/custom-project-odoo",
         )
         env_file.write_text(env_contents)
         addons_file = tmp_path / "odoo" / "custom" / "src" / "addons.yaml"
@@ -93,7 +97,12 @@ def test_v1_5_2_migration(
     empty = auto / ".empty"  # This file existed in doodba-scaffolding
     with local.cwd(tmp_path):
         # Copy v1.5.1
-        copy(src_path=str(cloned_template), vcs_ref="v1.5.1", force=True)
+        copy(
+            src_path=str(cloned_template),
+            vcs_ref="v1.5.1",
+            force=True,
+            data={"odoo_version": supported_odoo_version},
+        )
         auto.mkdir()
         empty.touch()
         assert empty.exists()
@@ -134,3 +143,191 @@ def test_v1_5_3_migration(
         assert auto_addons.is_dir()
         # odoo/auto/addons dir must be writable
         (auto_addons / "sample").touch()
+
+
+@pytest.mark.parametrize("domain_prod", (MISSING, None, "www.example.com"))
+@pytest.mark.parametrize(
+    "domain_prod_alternatives",
+    (MISSING, None, ["example.com", "www.example.org", "example.org"]),
+)
+@pytest.mark.parametrize("domain_test", (MISSING, None, "demo.example.com"))
+def test_v2_0_0_migration(
+    tmp_path: Path,
+    cloned_template: Path,
+    supported_odoo_version: float,
+    domain_prod,
+    domain_prod_alternatives,
+    domain_test,
+):
+    """Test migration to v2.0.0."""
+    # Construct data dict, removing MISSING values
+    data = {
+        "domain_prod_alternatives": domain_prod_alternatives,
+        "domain_prod": domain_prod,
+        "domain_test": domain_test,
+        "odoo_version": supported_odoo_version,
+    }
+    for key, value in tuple(data.items()):
+        if value is MISSING:
+            data.pop(key, None)
+    # This part makes sense only when v2.0.0 is not yet released
+    with local.cwd(cloned_template):
+        if "v2.0.0" not in git("tag").split():
+            git("tag", "-d", "test")
+            git("tag", "v2.0.0")
+    with local.cwd(tmp_path):
+        # Copy v1.6.0
+        copy(
+            src_path=str(cloned_template),
+            vcs_ref="v1.6.0",
+            force=True,
+            answers_file=".custom.copier-answers.yaml",
+            data=data,
+        )
+        git("config", "commit.gpgsign", "false")
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", "copied from template in v1.6.0")
+        # Update to v2.0.0
+        copy(answers_file=".custom.copier-answers.yaml", vcs_ref="v2.0.0", force=True)
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", "updated from template in v2.0.0")
+        # Assert .env removal
+        assert not Path(".env").exists()
+        # Assert domain structure migration
+        answers = yaml.safe_load(Path(".custom.copier-answers.yaml").read_text())
+        assert "domain_prod" not in answers
+        assert "domain_prod_alternatives" not in answers
+        assert "domain_test" not in answers
+        expected_domains_prod = []
+        if data.get("domain_prod"):
+            expected_domains_prod.append(
+                {"hosts": [domain_prod], "cert_resolver": "letsencrypt"}
+            )
+        if data.get("domain_prod_alternatives") and expected_domains_prod:
+            expected_domains_prod.append(
+                {
+                    "hosts": domain_prod_alternatives,
+                    "cert_resolver": "letsencrypt",
+                    "redirect_to": domain_prod,
+                }
+            )
+        assert answers["domains_prod"] == expected_domains_prod
+        expected_domains_test = []
+        if data.get("domain_test"):
+            expected_domains_test.append(
+                {"hosts": [domain_test], "cert_resolver": "letsencrypt"}
+            )
+        assert answers["domains_test"] == expected_domains_test
+
+
+def test_v2_1_1_migration(
+    tmp_path: Path, cloned_template: Path, supported_odoo_version: float,
+):
+    """Test migration to v2.1.1."""
+    pre, target = "v2.1.0", "v2.1.1"
+    # This part makes sense only when target version is not yet released
+    with local.cwd(cloned_template):
+        if target not in git("tag").split():
+            git("tag", "-d", "test")
+            git("tag", target)
+    with local.cwd(tmp_path):
+        # Copy previous version
+        copy(
+            src_path=str(cloned_template),
+            vcs_ref=pre,
+            force=True,
+            answers_file=".custom.copier-answers.yaml",
+            data={"odoo_version": supported_odoo_version},
+        )
+        git("config", "commit.gpgsign", "false")
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"copied from template in {pre}")
+        # Update to target version
+        copy(answers_file=".custom.copier-answers.yaml", vcs_ref=target, force=True)
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"updated from template in {target}")
+        # Assert config files removal
+        assert not Path(".vscode", "launch.json").exists()
+        assert not Path(".vscode", "tasks.json").exists()
+
+
+def test_v2_7_0_migration(
+    tmp_path: Path, cloned_template: Path, supported_odoo_version: float,
+):
+    """Test migration to v2.1.1."""
+    pre, target = "v2.6.1", "v2.7.0"
+    # This part makes sense only when target version is not yet released
+    with local.cwd(cloned_template):
+        if target not in git("tag").split():
+            git("tag", "-d", "test")
+            git("tag", target)
+    with local.cwd(tmp_path):
+        # Copy previous version
+        copy(
+            src_path=str(cloned_template),
+            vcs_ref=pre,
+            force=True,
+            answers_file=".custom.copier-answers.yaml",
+            data={"odoo_version": supported_odoo_version},
+        )
+        git("config", "commit.gpgsign", "false")
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"copied from template in {pre}")
+        # Update to target version
+        copy(answers_file=".custom.copier-answers.yaml", vcs_ref=target, force=True)
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"updated from template in {target}")
+        # Assert config files removal
+        assert not Path(".vscode", "settings.json").exists()
+
+
+@pytest.mark.parametrize(
+    "migration_from_version, license_answer", (("v2.8.0", None), ("v3.0.0", ""))
+)
+def test_v3_0_1_migration(
+    tmp_path: Path,
+    cloned_template: Path,
+    supported_odoo_version: float,
+    migration_from_version: str,
+    license_answer: Optional[str],
+):
+    """Test migration to v3.0.1."""
+    target, license_path = "v3.0.1", Path("LICENSE")
+    # This part makes sense only when target version is not yet released
+    with local.cwd(cloned_template):
+        if target not in git("tag").split():
+            git("tag", "-d", "test")
+            git("tag", target)
+    with local.cwd(tmp_path):
+        # Copy previous version
+        copy(
+            src_path=str(cloned_template),
+            vcs_ref=migration_from_version,
+            force=True,
+            answers_file=".custom.copier-answers.yaml",
+            data={
+                "odoo_version": supported_odoo_version,
+                "project_license": license_answer,
+            },
+        )
+        git("config", "commit.gpgsign", "false")
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"copied from template in {migration_from_version}")
+        assert not license_path.exists()
+        # Update to target version
+        copy(answers_file=".custom.copier-answers.yaml", vcs_ref=target, force=True)
+        git("add", ".")
+        git("commit", "-am", "reformat", retcode=1)
+        git("commit", "-am", f"updated from template in {target}")
+        # Assert LICENSE still does not exist, after updating
+        assert not license_path.exists()
+        # Assert correct answer in copier answers file
+        answers = yaml.safe_load(Path(".custom.copier-answers.yaml").read_bytes())
+        assert answers["project_license"] == "no_license"

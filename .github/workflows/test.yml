@@ -2,16 +2,29 @@ name: test
 
 on:
   pull_request:
-    paths-ignore:
-      - README.md
-      - CONTRIBUTING.md
-      - docs/**.md
   push:
-    branches: [master]
-    paths-ignore:
-      - README.md
-      - CONTRIBUTING.md
-      - docs/**.md
+    branches:
+      - devel
+      - stable
+  workflow_dispatch:
+    inputs:
+      pytest_addopts:
+        description:
+          Extra options for pytest; use -vv for full details; see
+          https://docs.pytest.org/en/latest/example/simple.html#how-to-change-command-line-options-defaults
+        required: false
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  LANG: "en_US.utf-8"
+  LC_ALL: "en_US.utf-8"
+  PIP_CACHE_DIR: ${{ github.workspace }}/.cache.~/pip
+  PIPX_HOME: ${{ github.workspace }}/.cache.~/pipx
+  POETRY_CACHE_DIR: ${{ github.workspace }}/.cache.~/pypoetry
+  POETRY_VIRTUALENVS_IN_PROJECT: "true"
+  PRE_COMMIT_HOME: ${{ github.workspace }}/.cache.~/pre-commit
+  PYTEST_ADDOPTS: ${{ github.event.inputs.pytest_addopts }}
+  PYTHONIOENCODING: "UTF-8"
 
 jobs:
   test:
@@ -67,7 +80,6 @@ jobs:
         env:
           SELECTED_ODOO_VERSIONS: ${{ matrix.odoo-version }}
       # Concurrent tests (isolated)
-      - run: invoke test --verbose
+      - run: poetry run invoke test --sequential
         env:
-          DOCKER_TEST: 1
           SELECTED_ODOO_VERSIONS: ${{ matrix.odoo-version }}

@@ -30,6 +30,7 @@ jobs:
           - 11.0
           - 12.0
           - 13.0
+          - 14.0
     steps:
       # Shared steps
       - uses: actions/checkout@v1
@@ -37,14 +38,19 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Generate cache key PY
+      - name: Generate cache key CACHE
         run:
-          echo "::set-env name=PY::${{ runner.os }} $(python -VV | sha256sum | cut -d' '
-          -f1) ${{ hashFiles('pyproject.toml') }} ${{ hashFiles('poetry.lock') }}"
-      - uses: actions/cache@v1
+          echo "CACHE=${{ secrets.CACHE_DATE }} ${{ runner.os }} $(python -VV |
+          sha256sum | cut -d' ' -f1) ${{ hashFiles('pyproject.toml') }} ${{
+          hashFiles('poetry.lock') }} ${{ hashFiles('.pre-commit-config.yaml') }}" >>
+          $GITHUB_ENV
+      - uses: actions/cache@v2.1.0
         with:
-          path: .venv
-          key: venv ${{ env.PY }}
+          path: |
+            .cache.~
+            .venv
+            ~/.local/bin
+          key: venv ${{ env.CACHE }}
       - run: pip install pipx
       - name: Generate cache key PIPX
         run: echo "::set-env name=PIPX::$(pipx --version | sha256sum | cut -d' ' -f1)"

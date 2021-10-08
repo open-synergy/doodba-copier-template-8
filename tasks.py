@@ -49,11 +49,8 @@ def check_dependencies(c):
 def develop(c):
     """Set up a development environment."""
     with c.cd(str(TEMPLATE_ROOT)):
-        if not Path(".venv").is_dir():
-            c.run("python3 -m venv .venv")
         c.run("git submodule update --init --checkout --recursive")
         # Use poetry to set up development environment in a local venv
-        c.run("poetry env use .venv/bin/python")
         c.run("poetry install")
         c.run("poetry run pre-commit install")
 
@@ -70,14 +67,24 @@ def lint(c, verbose=False):
 
 
 @task(develop)
-def test(c, verbose=False):
-    """Test project."""
-    flags = ["-n", "auto", "--color=yes"]
+def test(c, verbose=False, sequential=False, docker=True):
+    """Test project.
+
+    Add --sequential to run only sequential tests, with parallelization disabled.
+    """
+    flags = ["--color=yes"]
     if verbose:
         flags.append("-vv")
+    if not docker:
+        flags.append("--skip-docker-tests")
+    if sequential:
+        flags.extend(["-m", "sequential"])
+    else:
+        flags.extend(["-n", "auto", "-m", '"not sequential"'])
     flags = " ".join(flags)
+    cmd = f"poetry run pytest {flags} tests"
     with c.cd(str(TEMPLATE_ROOT)):
-        c.run(f"poetry run pytest {flags} tests")
+        c.run(cmd)
 
 
 @task(develop)
@@ -100,36 +107,28 @@ def update_test_samples(c):
             print("git repo is dirty; clean it and repeat")
             raise
         copier_conf = _load_copier_conf()
-        default_odoo_version = copier_conf["odoo_version"]["default"]
+        odoo_versions = copier_conf["odoo_version"]["choices"]
         samples = Path("tests", "samples")
-        c.run(
-            "poetry run copier -fr HEAD -x '**' -x '!prod.yaml' -x '!test.yaml' "
-            "-d cidr_whitelist='[123.123.123.123/24, 456.456.456.456]' "
-            f"copy . {samples / 'cidr-whitelist'}",
-            warn=True,
-        )
-        for file_name in (".pylintrc", ".pylintrc-mandatory"):
-            with (samples / "mqt-diffs" / f"{file_name}.diff").open(
-                "w"
-            ) as fd, tempfile.mkdtemp(prefix="dct-samples") as copy_path:
+        for odoo_version in odoo_versions:
+            with tempfile.TemporaryDirectory(
+                prefix="dct-samples"
+            ) as dct_copy_path, tempfile.TemporaryDirectory(
+                prefix="ssi-samples"
+            ) as ssi_copy_path:
+                c.run(
+                    "poetry run copier -fr HEAD -x '**' -x '!.pylintrc*' -x '!tasks.py' -x '!common.yaml' "
+                    f"-d odoo_version={odoo_version} copy . {dct_copy_path}"
+                )
+                ssi_template_version = odoo_version if odoo_version >= 13 else "13.0"
                 c.run(
                     "poetry run copier -fr HEAD -x '**' -x '!.pylintrc*' "
-                    f"copy . {copy_path}"
+                    f"-d odoo_version={ssi_template_version} copy vendor/ssi-addons-repo-template {ssi_copy_path}"
                 )
-                own = Path(copy_path, f"v{default_odoo_version}", file_name)
-                mqt = Path(
-                    "vendor",
-                    "maintainer-quality-tools",
-                    "sample_files",
-                    f"pre-commit-{default_odoo_version}",
-                    file_name,
-                )
-                fd.write(c.run(f"diff {own} {mqt}", warn=True).stdout)
-        c.run(
-            "poetry run copier -fr HEAD -x '**' -x '!prod.yaml' "
-            "-d domain_prod=www.example.com "
-            "-d domain_prod_alternatives='[old.example.com, example.com, example.org, www.example.org]' "
-            f"copy . {samples / 'alt-domains'}",
-            warn=True,
-        )
+                for file_name in (".pylintrc", ".pylintrc-mandatory"):
+                    with open(
+                        samples / "mqt-diffs" / f"v{odoo_version}-{file_name}.diff", "w"
+                    ) as fd:
+                        copied = Path(dct_copy_path, file_name)
+                        mqt = Path(ssi_copy_path, file_name)
+                        fd.write(c.run(f"diff {copied} {mqt}", warn=True).stdout)
         c.run("poetry run pre-commit run -a", warn=True)

@@ -115,10 +115,10 @@ def test_mqt_configs_synced(
         force=True,
         data={"odoo_version": any_odoo_version},
     )
-    tmp_oca_path = tmp_path / ".." / "oca-addons-repo-files"
+    tmp_oca_path = tmp_path / ".." / "ssi-addons-repo-files"
     tmp_oca_path.mkdir()
     copy(
-        str(Path("vendor", "oca-addons-repo-template")),
+        str(Path("vendor", "ssi-addons-repo-template")),
         tmp_oca_path,
         vcs_ref="HEAD",
         force=True,

@@ -80,6 +80,7 @@ jobs:
         env:
           SELECTED_ODOO_VERSIONS: ${{ matrix.odoo-version }}
       # Concurrent tests (isolated)
-      - run: poetry run invoke test --sequential
+      - run: invoke test --verbose
         env:
+          DOCKER_TEST: 1
           SELECTED_ODOO_VERSIONS: ${{ matrix.odoo-version }}

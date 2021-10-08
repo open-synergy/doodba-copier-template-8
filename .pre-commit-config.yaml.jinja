@@ -11,6 +11,7 @@ exclude: |
   (LICENSE.*|COPYING.*)
 default_language_version:
   python: python3
+  node: "14.14.0"
 repos:
   - repo: local
     hooks:
@@ -23,18 +24,17 @@ repos:
     rev: 19.10b0
     hooks:
       - id: black
-  - repo: https://github.com/prettier/prettier
-    rev: 2.0.2
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v2.1.2
     hooks:
-      - &prettier
-        id: prettier
+      - id: prettier
+        name: prettier + plugin-xml
         additional_dependencies:
-          - "@prettier/plugin-xml@0.7.2"
+          # HACK https://github.com/prettier/pre-commit/issues/16#issuecomment-713474520
+          - prettier@2.1.2
+          - "@prettier/plugin-xml@0.12.0"
         args:
           - --plugin=@prettier/plugin-xml
-      - <<: *prettier
-        name: prettier + plugin-xml
-        files: \.xml$
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v6.8.0
     hooks:

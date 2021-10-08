@@ -1,2 +1,2 @@
 ARG ODOO_VERSION
-FROM ghcr.io/tecnativa/doodba:${ODOO_VERSION}-onbuild
+FROM osind/doodba:8.0-onbuild

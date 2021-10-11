@@ -19,17 +19,9 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - 3.6
-          - 3.7
-          - 3.8
+          - 2.7
         odoo-version:
-          - 7.0
           - 8.0
-          - 9.0
-          - 10.0
-          - 11.0
-          - 12.0
-          - 13.0
     steps:
       # Shared steps
       - uses: actions/checkout@v1
@@ -37,17 +29,12 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Generate cache key PY
+      - name: Generate cache key CACHE
         run:
-          echo "::set-env name=PY::${{ runner.os }} $(python -VV | sha256sum | cut -d' '
-          -f1) ${{ hashFiles('pyproject.toml') }} ${{ hashFiles('poetry.lock') }}"
-      - uses: actions/cache@v1
-        with:
-          path: .venv
-          key: venv ${{ env.PY }}
-      - run: pip install pipx
-      - name: Generate cache key PIPX
-        run: echo "::set-env name=PIPX::$(pipx --version | sha256sum | cut -d' ' -f1)"
+          echo "CACHE=${{ secrets.CACHE_DATE }} ${{ runner.os }} $(python -VV |
+          sha256sum | cut -d' ' -f1) ${{ hashFiles('pyproject.toml') }} ${{
+          hashFiles('poetry.lock') }} ${{ hashFiles('.pre-commit-config.yaml') }}" >>
+          $GITHUB_ENV
       - uses: actions/cache@v1
         with:
           path: ~/.local/pipx/venvs
@@ -57,7 +44,7 @@ jobs:
           path: ~/.local/bin
           key: local-bin ${{ env.PY }} ${{ env.PIPX }}
       - name: Patch $PATH
-        run: echo "::set-env name=PATH::$HOME/.local/bin:$PATH"
+        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
       - run: pipx install invoke
       - run: pipx install poetry
       - run: invoke develop

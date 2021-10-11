@@ -11,6 +11,7 @@ exclude: |
   (LICENSE.*|COPYING.*)
 default_language_version:
   python: python3
+  node: "14.14.0"
 repos:
   - repo: local
     hooks:
@@ -24,7 +25,7 @@ repos:
     hooks:
       - id: black
   - repo: https://github.com/prettier/prettier
-    rev: 2.0.2
+    rev: 2.1.2
     hooks:
       - &prettier
         id: prettier

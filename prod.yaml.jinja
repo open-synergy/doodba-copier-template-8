@@ -124,14 +124,16 @@ services:
       - .docker/db-creation.env
     restart: unless-stopped
 
+{%- if use_aeroo_report %}
   aeroo-docs:
     extends:
       file: common.yaml
       service: aeroo-docs
     depends_on:
       - odoo
-  {%- if smtp_relay_host %}
+{%- endif %}
 
+  {%- if smtp_relay_host %}
   smtp:
     extends:
       file: common.yaml

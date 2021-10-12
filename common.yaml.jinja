@@ -81,8 +81,10 @@ services:
     volumes:
       - db:/var/lib/postgresql/data:z
 
+{%- if use_aeroo_report %}
   aeroo-docs:
     image: adhoc/aeroo-docs
+{%- endif %}
 
   smtpfake:
     image: mailhog/mailhog

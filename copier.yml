@@ -241,6 +241,12 @@ service_module:
   help: >-
     Clone modul-modul untuk Service?
 
+use_aeroo_report:
+  default: true
+  type: bool
+  help: >-
+    Menggunakan aeroo_report?
+
 odoo_initial_lang:
   default: en_US
   type: str

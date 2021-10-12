@@ -66,9 +66,7 @@ services:
       POSTGRES_PASSWORD: odoopassword
 
   aeroo-docs:
-    extends:
-      file: common.yaml
-      service: aeroo-docs
+    image: adhoc/aeroo-docs
     depends_on:
       - odoo
 
